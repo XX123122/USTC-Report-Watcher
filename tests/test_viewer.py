@@ -67,7 +67,7 @@ def test_refresh_stays_visible_across_tab_changes_and_updates_on_completion(conf
         completed.set()
         return CompletedProcess(args,0,stdout=json.dumps({'status':'success','completed_at':finished.isoformat()}))
 
-    monkeypatch.setattr('ustc_report_watcher.viewer.subprocess.run',fake_process)
+    monkeypatch.setattr('ustc_report_watcher.viewer.execute_command',fake_process)
     root = build_window(config,hidden=True)
     try:
         root.update()
@@ -136,7 +136,7 @@ def test_skipped_refresh_waits_for_existing_check_instead_of_claiming_success(co
     value=Store(config.path('database'))
     value.commit_batch([],config,now)
     value.close()
-    monkeypatch.setattr('ustc_report_watcher.viewer.subprocess.run',lambda args,**kwargs: CompletedProcess(args,0,stdout=json.dumps({'status':'skipped'})))
+    monkeypatch.setattr('ustc_report_watcher.viewer.execute_command',lambda args,**kwargs: CompletedProcess(args,0,stdout=json.dumps({'status':'skipped'})))
     root=build_window(config,hidden=True)
     try:
         root.update()

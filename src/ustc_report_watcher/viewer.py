@@ -18,6 +18,11 @@ from .models import currently_selectable, upcoming
 LABELS = {"online": "线上", "hybrid": "混合", "possible_online": "疑似线上", "offline": "线下", "unknown": "待确认"}
 
 
+def execute_command(*args, **kwargs):
+    """Application subprocess boundary, independent from Tk's initialization helpers."""
+    return subprocess.run(*args, **kwargs)
+
+
 def sync_status_text(status, timezone="Asia/Shanghai", command=None, elapsed=0, notice=""):
     value = status.get('last_success')
     completed = datetime.fromisoformat(value).astimezone(ZoneInfo(timezone)).strftime('%Y-%m-%d %H:%M:%S') if value else '尚未成功同步'
@@ -183,7 +188,7 @@ def build_window(config, demo=False, uri=None, hidden=False):
 
         def worker():
             try:
-                result = subprocess.run(launch_args(config, command, windowless=False),
+                result = execute_command(launch_args(config, command, windowless=False),
                                         capture_output=True, text=True, encoding='utf-8',
                                         creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0, timeout=1000)
                 payload = json.loads(result.stdout)
