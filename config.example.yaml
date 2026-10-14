@@ -1,0 +1,32 @@
+app:
+  timezone: Asia/Shanghai
+schedule:
+  interval_hours: 6
+fetch:
+  mode: auto
+  min_interval_seconds: 2
+  max_pages: 30
+  request_timeout_seconds: 20
+  total_timeout_seconds: 600
+  retries: 2
+  source_file: .auth/source.json
+subscriptions:
+  include_modalities: [online, hybrid]
+  title_keywords_any: []
+  title_keywords_all: []
+  department_keywords: []
+  speaker_keywords: []
+  exclude_keywords: []
+  watch_report_ids: []
+  notify_on_update: true
+  remind_before_hours: null
+notification:
+  enabled: true
+  first_run_mode: summary
+  max_titles_in_toast: 3
+  notify_possible_online: false
+  notify_on_auth_expiry: true
+paths:
+  auth_state: .auth/session.bin
+  database: data/reports.db
+  log_dir: logs

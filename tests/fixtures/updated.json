@@ -1,0 +1,5 @@
+{"reports":[
+ {"report_id":"demo-offline","title_zh":"网络安全报告","speaker":"示例报告人甲","department":"计算机学院","location_full":"教学楼101教室；腾讯会议","start_at":"2099-10-16 14:00"},
+ {"report_id":"demo-online","title_zh":"智能体研究进展","speaker":"示例报告人乙","department":"信息学院","location_full":"腾讯会议","start_at":"2099-10-17 16:00"},
+ {"report_id":"demo-new","title_zh":"科学计算方法","speaker":"示例报告人丙","department":"数学学院","location_full":"Zoom","start_at":"2099-10-18 10:00"}
+]}
